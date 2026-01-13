@@ -1,12 +1,18 @@
 import MyButton from "@/components/ui/button";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 import { Image, StyleSheet, TextInput, View } from "react-native";
 
 export default function LoginPage() {
   const router = useRouter();
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
   const onLogin = () => {
     router.push("/signup");
+    console.log(credentials);
   };
   return (
     <View style={styles.body}>
@@ -16,8 +22,21 @@ export default function LoginPage() {
         resizeMode="stretch"
       />
       <View style={styles.container}>
-        <TextInput style={styles.input} placeholder="Enter email" />
-        <TextInput style={styles.input} placeholder="Enter password" />
+        <TextInput
+          style={styles.input}
+          onChangeText={(e) =>
+            setCredentials((prev) => ({ ...prev, email: e }))
+          }
+          placeholder="Enter email"
+        />
+        <TextInput
+          onChangeText={(e) =>
+            setCredentials((prev) => ({ ...prev, password: e }))
+          }
+          style={styles.input}
+          placeholder="Enter password"
+          secureTextEntry={true}
+        />
         <View
           style={{
             width: "100%",
