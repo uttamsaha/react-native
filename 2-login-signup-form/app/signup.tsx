@@ -1,6 +1,6 @@
 import MyButton from "@/components/ui/button";
 import { useRouter } from "expo-router";
-import { Image, StyleSheet, TextInput, View } from "react-native";
+import { Image, ScrollView, StyleSheet, TextInput, View } from "react-native";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -8,8 +8,12 @@ export default function SignUpPage() {
   const onLogin = () => {
     router.push("/login");
   };
+
+  const onListView = () => {
+    router.push("/list");
+  };
   return (
-    <View style={styles.body}>
+    <ScrollView style={styles.body} showsVerticalScrollIndicator={false}>
       <Image
         source={require("@/assets/images/login.jpg")}
         style={{ width: "100%", height: 400 }}
@@ -18,15 +22,24 @@ export default function SignUpPage() {
       <View style={styles.container}>
         <TextInput style={styles.input} placeholder="Enter email" />
         <TextInput style={styles.input} placeholder="Enter password" />
+        <TextInput style={styles.input} placeholder="Enter email" />
+        <TextInput style={styles.input} placeholder="Enter email" />
+        <TextInput style={styles.input} placeholder="Enter email" />
+        <TextInput style={styles.input} placeholder="Enter email" />
+        <TextInput style={styles.input} placeholder="Enter email" />
+        <TextInput style={styles.input} placeholder="Enter email" />
+        <TextInput style={styles.input} placeholder="Enter email" />
         <View
           style={{
             width: "100%",
+            gap: 10
           }}
         >
           <MyButton title="Register" onPress={onLogin} />
+          <MyButton title="FlatList" onPress={onListView} />
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -35,10 +48,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     minHeight: "100%",
     paddingTop: 15,
+    flex: 1,
   },
   container: {
     width: "100%",
     paddingHorizontal: 20,
+    paddingBottom: 100
   },
   input: {
     borderWidth: 1,
